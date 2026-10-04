@@ -1,0 +1,30 @@
+# Publishes the package to npm when a version tag (v1.2.3) is pushed. The tag must match package.json. A version
+# already on npm (published by hand) is tested and built but not published again.
+# Auth is npm trusted publishing (OIDC, no token secret): the package's trusted publisher on npmjs.com names this repo,
+# release.yml and the `npm` environment. It needs npm 11.5.1 or later.
+name: Release
+on:
+  push: { tags: ['v*.*.*'] }
+permissions: { contents: read, id-token: write }
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    environment: npm
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with: { node-version: 24, cache: npm, registry-url: 'https://registry.npmjs.org' }
+      - run: npm install -g npm@11.21.0
+      - run: npm ci
+      - run: test "v$(node -p 'require(`./package.json`).version')" = "$GITHUB_REF_NAME"
+      - run: npx playwright install --with-deps chromium
+      - run: npm run typecheck && npm run test:coverage && npm run build
+        env: { CI: '1' }
+      - id: npm
+        run: |
+          if npm view "$(node -p 'require(`./package.json`).name')@$(node -p 'require(`./package.json`).version')" version >/dev/null 2>&1; then
+            echo "published=true" >> "$GITHUB_OUTPUT"
+          fi
+      # Publishes package.json `files` (dist/ and LICENSE); dist/ was built above.
+      - if: steps.npm.outputs.published != 'true'
+        run: npm publish --provenance --access public

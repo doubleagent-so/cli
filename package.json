@@ -1,0 +1,49 @@
+{
+  "name": "@doubleagent-so/cli",
+  "version": "0.1.0",
+  "description": "Install and verify the Double Agent SDK: npx @doubleagent-so/cli init",
+  "keywords": [
+    "bot-detection",
+    "ai-agent",
+    "cli",
+    "erc-8004"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/doubleagent-so/cli.git"
+  },
+  "homepage": "https://doubleagent.so/docs/",
+  "bugs": "https://github.com/doubleagent-so/cli/issues",
+  "type": "module",
+  "bin": {
+    "doubleagent": "dist/doubleagent.mjs"
+  },
+  "files": [
+    "dist",
+    "LICENSE"
+  ],
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "test": "vitest run",
+    "test:coverage": "vitest run --coverage",
+    "typecheck": "tsc -p tsconfig.json"
+  },
+  "devDependencies": {
+    "@doubleagent-so/agent-detector": "0.3.0",
+    "@slicekit/erc8128": "0.4.1",
+    "@types/node": "^26.6.2",
+    "@vitest/coverage-v8": "^5.0.1",
+    "esbuild": "^0.28.2",
+    "happy-dom": "^20.14.5",
+    "typescript": "^7.0.2",
+    "viem": "2.56.9",
+    "vitest": "^5.0.1"
+  },
+  "optionalDependencies": {
+    "playwright": "1.63.0"
+  }
+}

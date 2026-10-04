@@ -1,0 +1,14 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Question or idea
+    url: https://github.com/doubleagent-so/cli/discussions
+    about: Ask how to install or use the CLI, or share an idea.
+  - name: Security report
+    url: https://github.com/doubleagent-so/cli/blob/main/SECURITY.md
+    about: Report security issues privately, not in a public issue.
+  - name: Agent Skill
+    url: https://github.com/doubleagent-so/skills/issues
+    about: Problems with the Agent Skill's runbook or helper scripts.
+  - name: Hosted product (dashboard, account, keys)
+    url: https://doubleagent.so/docs/
+    about: The Double Agent cloud the CLI talks to.
