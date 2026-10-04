@@ -1,7 +1,9 @@
 # Changelog
 
-## Unreleased
+## 0.2.0 — 2026-10-04
 
+- **Detection engine 0.4.0:** `simulate` scores with `@doubleagent-so/agent-detector` 0.4.0 (fewer false positives from
+  three behaviour codes, frustration cues, the verdict's `evidence` field), so its verdicts can differ from 0.1.0.
 - **Standalone:** the CLI owns its ERC-8004 identity code (agent names and references, User-Agent declarations,
   registry lookups and ERC-8128 request signing) and builds, typechecks and tests on its own: `npm ci`,
   `npm run test:coverage`, `npm run build`. It uses `@doubleagent-so/agent-detector` from npm. No command or output
