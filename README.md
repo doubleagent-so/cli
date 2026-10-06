@@ -1,5 +1,12 @@
 # doubleagent (CLI)
 
+**[Live demo](https://lab.doubleagent.dev)** · [Docs](https://doubleagent.so/docs/cli/) · [Website](https://doubleagent.so) ·
+[npm](https://www.npmjs.com/package/@doubleagent-so/cli) · [Changelog](https://github.com/doubleagent-so/cli/blob/main/CHANGELOG.md) · [Report an issue](https://github.com/doubleagent-so/cli/issues)
+
+[![npm](https://img.shields.io/npm/v/@doubleagent-so/cli.svg)](https://www.npmjs.com/package/@doubleagent-so/cli)
+[![CI](https://github.com/doubleagent-so/cli/actions/workflows/ci.yml/badge.svg)](https://github.com/doubleagent-so/cli/actions/workflows/ci.yml)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/doubleagent-so/cli/blob/main/LICENSE)
+
 Installs the Double Agent SDK into a project, manages sites and keys, and checks a live site. Installation commands need Node 18+ and no runtime dependencies. Website simulation needs Node 20+, the optional Playwright dependency and its Chromium browser.
 
 ```sh
