@@ -1,6 +1,6 @@
 {
   "name": "@doubleagent-so/cli",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Install and verify the Double Agent SDK: npx @doubleagent-so/cli init",
   "keywords": [
     "bot-detection",
@@ -33,7 +33,7 @@
     "typecheck": "tsc -p tsconfig.json"
   },
   "devDependencies": {
-    "@doubleagent-so/agent-detector": "0.4.0",
+    "@doubleagent-so/agent-detector": "0.4.1",
     "@slicekit/erc8128": "0.4.1",
     "@types/node": "^26.6.2",
     "@vitest/coverage-v8": "^5.0.1",

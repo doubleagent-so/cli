@@ -1,5 +1,17 @@
 # Changelog
 
+## 0.2.1 — 2026-10-06
+
+- **Detection engine 0.4.1:** built with `@doubleagent-so/agent-detector` 0.4.1, a docs and tooling release, so
+  `simulate` verdicts are the same as with 0.2.0.
+- **Security:** API and portal URLs trim trailing slashes with a linear scan, and `verify-domain` cuts the host at the
+  first slash, instead of regular expressions that crafted input could stall (ReDoS). The install snippet's CDN URL is
+  escaped with a full regular-expression escape that covers backslashes. Both were CodeQL findings.
+- **Fix:** `verify-domain` now discards a path that contains a line break, instead of keeping it in the host.
+- **Docs:** shared Double Agent README header, top links, footer and badges, with links on doubleagent.so.
+- **Maintenance:** dev dependency updates (#1). The release workflow now also creates the GitHub Release, with this
+  changelog section as its notes.
+
 ## 0.2.0 — 2026-10-04
 
 - **Detection engine 0.4.0:** `simulate` scores with `@doubleagent-so/agent-detector` 0.4.0 (fewer false positives from
