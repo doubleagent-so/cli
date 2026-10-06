@@ -1,5 +1,7 @@
 /** What the installer writes: the install snippet from https://doubleagent.so/docs/. */
 
+import { escapeRegExp } from './text';
+
 export const CDN_URL = 'https://cdn.doubleagent.so/v1/doubleagent.js';
 export const STUB = 'window.doubleagent=window.doubleagent||{q:[],push(){this.q.push(arguments)}};';
 /** Old installs may still carry this; `verify` flags it. */
@@ -95,7 +97,7 @@ export function withKey(src: string, key: string): string {
       .replace(/('data-key':\s*')[^']*(')/g, `$1${key}$2`)
       .replace(/(dataset\.key = ')[^']*(')/g, `$1${key}$2`);
   }
-  const url = CDN_URL.replace(/[./]/g, '\\$&');
+  const url = escapeRegExp(CDN_URL);
   return src
     .replace(new RegExp(`(src="${url}")`, 'g'), `$1 data-key="${key}"`)
     .replace(new RegExp(`(src: '${url}',)`, 'g'), `$1 'data-key': '${key}',`)

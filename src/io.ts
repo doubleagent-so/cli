@@ -1,5 +1,6 @@
 import { createApi, DEFAULT_API, DEFAULT_PORTAL, type Api } from './api';
 import { loadCredentials, type Credentials } from './config';
+import { trimTrailing } from './text';
 
 export interface Io {
   cwd: string;
@@ -23,10 +24,10 @@ export const str = (v: string | boolean | undefined): string | undefined => (typ
 
 /** --api, else $DOUBLEAGENT_API, else the API saved at login, else production. */
 export const apiBase = (args: Args, io: Io, creds?: Credentials | null): string =>
-  (str(args.flags.api) ?? io.env.DOUBLEAGENT_API ?? creds?.api ?? DEFAULT_API).replace(/\/+$/, '');
+  trimTrailing(str(args.flags.api) ?? io.env.DOUBLEAGENT_API ?? creds?.api ?? DEFAULT_API, '/');
 
 export const portalBase = (args: Args, io: Io): string =>
-  (str(args.flags.portal) ?? io.env.DOUBLEAGENT_PORTAL ?? DEFAULT_PORTAL).replace(/\/+$/, '');
+  trimTrailing(str(args.flags.portal) ?? io.env.DOUBLEAGENT_PORTAL ?? DEFAULT_PORTAL, '/');
 
 export const anonApi = (args: Args, io: Io): Api => createApi(apiBase(args, io, loadCredentials(io.env)), undefined, io.fetch);
 

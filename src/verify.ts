@@ -1,6 +1,7 @@
 import { detectInHtml, type IntegrationName } from './analytics';
 import { KEY_RE, PLACEHOLDER_KEY } from './snippet';
 import { DEFAULT_API } from './api';
+import { trimTrailing } from './text';
 
 const TIMEOUT_MS = 10000;
 
@@ -128,7 +129,7 @@ export async function verify(url: string, opts: { api?: string; fetch?: FetchFn 
   if (html === null) return result;
   inspectHtml(result, html);
   result.problems.push(...htmlProblems(result));
-  result.installCheck = await installCheck(f, (opts.api ?? result.endpoint ?? DEFAULT_API).replace(/\/+$/, ''), url);
+  result.installCheck = await installCheck(f, trimTrailing(opts.api ?? result.endpoint ?? DEFAULT_API, '/'), url);
   result.ok = result.script && result.stub && (result.keyless || result.keyValid);
   return result;
 }

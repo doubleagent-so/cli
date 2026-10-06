@@ -9,9 +9,8 @@
 <p align="center">Install the Double Agent SDK, manage sites and keys, and check a live site from your terminal.</p>
 
 <p align="center">
-  <strong><a href="https://lab.doubleagent.dev">Live demo</a></strong> ·
+  <strong><a href="https://doubleagent.so">Website</a></strong> ·
   <a href="https://doubleagent.so/docs/cli/">Docs</a> ·
-  <a href="https://doubleagent.so">Website</a> ·
   <a href="https://www.npmjs.com/package/@doubleagent-so/cli">npm</a> ·
   <a href="https://github.com/doubleagent-so/cli/blob/main/CHANGELOG.md">Changelog</a> ·
   <a href="https://github.com/doubleagent-so/cli/issues">Report an issue</a> ·

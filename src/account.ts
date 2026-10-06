@@ -229,7 +229,7 @@ export function instructions(method: Method, host: string, token: string): strin
 
 /** The host argument without scheme or path, and the --method flag (dns by default). */
 function verifyTarget(args: Args): { host: string; method: Method } {
-  const host = args.pos[0]?.toLowerCase().replace(/^https?:\/\//, '').replace(/\/.*$/, '');
+  const host = args.pos[0]?.toLowerCase().replace(/^https?:\/\//, '').split('/', 1)[0];
   if (!host || !/^[a-z0-9.-]+(:\d+)?$/.test(host)) throw new CliError('usage: npx @doubleagent-so/cli verify-domain <host> --method dns|meta|file|script [--site st_…]');
   const method = (str(args.flags.method) ?? 'dns') as Method;
   if (!METHODS.includes(method)) throw new CliError(`--method must be one of ${METHODS.join('|')}`);

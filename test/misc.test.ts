@@ -3,7 +3,10 @@ import { describe, expect, it } from 'vitest';
 import { parseArgs } from '../src/cli';
 import { afterImports, htmlHeadIndex, insertAfterTag, insertBefore } from '../src/edit';
 import { difficultyFrom, solve } from '../src/pow';
+import { createApi } from '../src/api';
+import { apiBase, portalBase, type Io } from '../src/io';
 import { withKey, CDN_URL } from '../src/snippet';
+import { escapeRegExp, trimTrailing } from '../src/text';
 import { cli, fixture, pkg, read } from './helpers';
 
 describe('parseArgs', () => {
@@ -184,5 +187,45 @@ describe('installed detection after the @doubleagent-so rename', () => {
     expect(INSTALLED_RE.test("import { doubleagent } from '@doubleagent-so/js';")).toBe(true);
     expect(INSTALLED_RE.test('import d from "@doubleagent/js"')).toBe(true);
     expect(INSTALLED_RE.test("import x from '@doubleagent-so/node';")).toBe(false);
+  });
+});
+
+describe('untrusted text in linear time', () => {
+  const slashes = '/'.repeat(100_000);
+  const io = { env: {} } as Io;
+  const timed = (work: () => void): number => {
+    const startedAt = performance.now();
+    work();
+    return performance.now() - startedAt;
+  };
+
+  it('trimTrailing drops only the run at the end', () => {
+    expect(trimTrailing('https://a.test///', '/')).toBe('https://a.test');
+    expect(trimTrailing('a/b', '/')).toBe('a/b');
+    expect(trimTrailing('///', '/')).toBe('');
+    expect(trimTrailing('', '/')).toBe('');
+  });
+
+  it('escapeRegExp escapes backslashes and every other metacharacter', () => {
+    const text = 'a\\.b*c+d?e^f$g{h}i(j)k|l[m]n/o';
+    expect(escapeRegExp('\\')).toBe('\\\\');
+    expect(new RegExp(`^${escapeRegExp(text)}$`).test(text)).toBe(true);
+    expect(new RegExp(escapeRegExp('a.b')).test('axb')).toBe(false);
+  });
+
+  it('API and portal bases drop trailing slashes, even after a long run of slashes', () => {
+    expect(apiBase({ pos: [], flags: { api: 'https://a.test//' } }, io)).toBe('https://a.test');
+    expect(portalBase({ pos: [], flags: { portal: 'https://p.test/' } }, io)).toBe('https://p.test');
+    expect(createApi('https://a.test///', undefined).base).toBe('https://a.test');
+    const long = `https://a.test${slashes}x`;
+    expect(timed(() => apiBase({ pos: [], flags: { api: long } }, io))).toBeLessThan(250);
+    expect(timed(() => portalBase({ pos: [], flags: { portal: long } }, io))).toBeLessThan(250);
+    expect(timed(() => createApi(long, undefined))).toBeLessThan(250);
+  });
+
+  it('verify-domain rejects a host of slashes and a line break quickly', async () => {
+    const startedAt = performance.now();
+    expect((await cli(['verify-domain', `${slashes}\nx`])).err).toMatch(/usage/);
+    expect(performance.now() - startedAt).toBeLessThan(250);
   });
 });

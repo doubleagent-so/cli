@@ -1,4 +1,5 @@
 /** Minimal JSON client for the Double Agent API (account, site and key routes). */
+import { trimTrailing } from './text';
 export const DEFAULT_API = 'https://api.doubleagent.so';
 export const DEFAULT_PORTAL = 'https://app.doubleagent.so';
 
@@ -40,7 +41,7 @@ export function createApi(
   f: typeof fetch = fetch,
   { timeoutMs = API_TIMEOUT_MS }: { timeoutMs?: number } = {},
 ): Api {
-  const root = base.replace(/\/+$/, '');
+  const root = trimTrailing(base, '/');
   return {
     base: root,
     async request<T>(method: string, path: string, body?: unknown, headers: Record<string, string> = {}): Promise<ApiResponse<T>> {
