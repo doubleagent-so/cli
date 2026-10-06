@@ -1,11 +1,28 @@
-# doubleagent (CLI)
+<p align="center">
+  <img src="https://raw.githubusercontent.com/doubleagent-so/cli/main/assets/doubleagent.svg" width="80" height="80" alt="Double Agent">
+</p>
 
-**[Live demo](https://lab.doubleagent.dev)** · [Docs](https://doubleagent.so/docs/cli/) · [Website](https://doubleagent.so) ·
-[npm](https://www.npmjs.com/package/@doubleagent-so/cli) · [Changelog](https://github.com/doubleagent-so/cli/blob/main/CHANGELOG.md) · [Report an issue](https://github.com/doubleagent-so/cli/issues)
+<h1 align="center">Double Agent CLI</h1>
 
-[![npm](https://img.shields.io/npm/v/@doubleagent-so/cli.svg)](https://www.npmjs.com/package/@doubleagent-so/cli)
-[![CI](https://github.com/doubleagent-so/cli/actions/workflows/ci.yml/badge.svg)](https://github.com/doubleagent-so/cli/actions/workflows/ci.yml)
-[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/doubleagent-so/cli/blob/main/LICENSE)
+<p align="center"><code>@doubleagent-so/cli</code></p>
+
+<p align="center">Install the Double Agent SDK, manage sites and keys, and check a live site from your terminal.</p>
+
+<p align="center">
+  <strong><a href="https://lab.doubleagent.dev">Live demo</a></strong> ·
+  <a href="https://doubleagent.so/docs/cli/">Docs</a> ·
+  <a href="https://doubleagent.so">Website</a> ·
+  <a href="https://www.npmjs.com/package/@doubleagent-so/cli">npm</a> ·
+  <a href="https://github.com/doubleagent-so/cli/blob/main/CHANGELOG.md">Changelog</a> ·
+  <a href="https://github.com/doubleagent-so/cli/issues">Report an issue</a> ·
+  <a href="https://github.com/doubleagent-so/cli/blob/main/LICENSE">MIT license</a>
+</p>
+
+<p align="center">
+  <a href="https://www.npmjs.com/package/@doubleagent-so/cli"><img src="https://img.shields.io/npm/v/@doubleagent-so/cli.svg" alt="npm"></a>
+  <a href="https://github.com/doubleagent-so/cli/actions/workflows/ci.yml"><img src="https://github.com/doubleagent-so/cli/actions/workflows/ci.yml/badge.svg" alt="CI"></a>
+  <a href="https://github.com/doubleagent-so/cli/blob/main/LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue.svg" alt="License: MIT"></a>
+</p>
 
 Installs the Double Agent SDK into a project, manages sites and keys, and checks a live site. Installation commands need Node 18+ and no runtime dependencies. Website simulation needs Node 20+, the optional Playwright dependency and its Chromium browser.
 
@@ -179,6 +196,18 @@ npm run build           # dist/doubleagent.mjs and dist/simulation-probe.js
 The simulation tests drive a real Chromium: run `npx playwright install chromium` once. See
 [CONTRIBUTING.md](CONTRIBUTING.md) before opening a pull request.
 
-## License
+---
 
-[MIT](LICENSE)
+## Support
+
+- Questions and bugs: [open an issue](https://github.com/doubleagent-so/cli/issues/new/choose).
+- Private account or billing questions: [support@doubleagent.so](mailto:support@doubleagent.so). Never post secret keys or session tokens in a public issue.
+- Security problems: report them privately as described in [SECURITY.md](https://github.com/doubleagent-so/cli/blob/main/SECURITY.md).
+
+<p align="center">
+  Maintained by <a href="https://doubleagent.so">Double Agent</a> ·
+  <a href="https://github.com/doubleagent-so/cli/blob/main/CONTRIBUTING.md">Contributing</a> ·
+  <a href="https://github.com/doubleagent-so/cli/blob/main/CODE_OF_CONDUCT.md">Code of conduct</a> ·
+  <a href="https://github.com/doubleagent-so/cli/blob/main/SECURITY.md">Security</a> ·
+  <a href="https://github.com/doubleagent-so/cli/blob/main/LICENSE">MIT license</a>
+</p>
